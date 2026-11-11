@@ -2,6 +2,7 @@
 *.asv
 *.m~
 *.autosave
+*.mexw64
 
 # Simulink generated files
 slprj/
@@ -10,3 +11,13 @@ slprj/
 
 # MATLAB cache
 .cache/
+
+# MATLAB çalışma verileri
+matlab.mat
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Kişisel dosyalar
+*.log
