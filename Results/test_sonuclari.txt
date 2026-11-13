@@ -1,0 +1,107 @@
+# 4S1P BMS PROJESİ – TEST SONUÇLARI
+
+## 1. Normal Çalışma Testi
+Simülasyon süresi: 10 saniye
+
+Başlangıç SOC değerleri:
+- SOC1: 0.95
+- SOC2: 0.90
+- SOC3: 0.85
+- SOC4: 0.80
+
+Ölçülen gerilimler:
+- V1: 4.123 V
+- V2: 4.070 V
+- V3: 4.021 V
+- V4: 3.972 V
+
+Kontrolcü çıktıları:
+- Protection_Flag: 0
+- S1: 1
+- S2: 0
+- S3: 0
+- S4: 0
+
+Kaynak akımı (I_source): 1 A
+
+Sonuç: Normal çalışma koşulunda en yüksek gerilime sahip birinci hücrenin dengeleme kolu seçildi.
+
+## 2. Dengeleme Testi
+Simülasyon süresi: 300 saniye
+
+Ölçülen gerilimler:
+- V1: 4.069 V
+- V2: 4.030 V
+- V3: 3.981 V
+- V4: 3.932 V
+
+SOC değerleri:
+- SOC1: 0.8998
+- SOC2: 0.8583
+- SOC3: 0.8083
+- SOC4: 0.7583
+
+Kontrolcü çıktıları:
+- Protection_Flag: 0
+- S1: 1
+- S2: 0
+- S3: 0
+- S4: 0
+
+Birinci dengeleme kolu akımı: 0.2035 A
+
+Gerilim farkı:
+- 10 saniyede: 0.151 V
+- 300 saniyede: 0.137 V
+
+Sonuç: Dengeleme kolunun çalıştığı ve hücreler arasındaki gerilim farkının azaldığı gözlemlendi.
+
+## 3. Dengeleme Kollarının Akım Testi
+
+Her dengeleme kolu ayrı ayrı etkinleştirilerek ölçüm yapıldı.
+
+- Switch1: 0.2061 A
+- Switch2: 0.2034 A
+- Switch3: 0.2009 A
+- Switch4: 0.1985 A
+
+Sonuç: Dört dengeleme kolunun da etkinleştirildiğinde akım ilettiği doğrulandı.
+
+## 4. Koruma Mantığı Testleri
+
+Normal gerilim koşullarında:
+- Protection_Flag: 0
+- S1: 1
+- S2, S3, S4: 0
+- I_source: 1 A
+
+Üst gerilim eşiği geçici olarak 4.0 V yapıldığında:
+- Protection_Flag: 1
+- S1, S2, S3, S4: 0
+- I_source: 0 A
+
+Alt gerilim eşiği geçici olarak 4.0 V yapıldığında:
+- Protection_Flag: 1
+- S1, S2, S3, S4: 0
+- I_source: 0 A
+
+Testlerden sonra eşikler tekrar 4.2 V ve 2.5 V olarak ayarlandı.
+
+Not: Koruma testleri, kontrolcü mantığını doğrulamak amacıyla eşikler geçici olarak değiştirilerek yapılmıştır. Gerçek hücre aşırı gerilim ve düşük gerilim sınırlarının fiziksel doğrulaması değildir.
+
+## 5. Hücre Seçimi Testi
+
+Birinci hücrenin başlangıç SOC değeri geçici olarak 0.80 yapılarak ikinci hücrenin en yüksek gerilime sahip olması sağlandı.
+
+Kontrolcü çıktıları:
+- S1: 0
+- S2: 1
+- S3: 0
+- S4: 0
+- Protection_Flag: 0
+
+İkinci dengeleme kolu akımı: 0.2034 A
+
+Test sonrasında birinci hücrenin başlangıç SOC değeri tekrar 0.95 olarak ayarlandı.
+
+Sonuç: Kontrolcünün en yüksek gerilime sahip hücreyi seçebildiği doğrulandı.
